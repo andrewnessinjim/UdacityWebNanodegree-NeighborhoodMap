@@ -2,14 +2,21 @@
   text-align: center;
 }
 
-
-.app-header-content {
+.app-header {
+  display: flex;
   margin: 0;
-  padding: 5px;
+  padding: 8px;
+  align-items: center;
   box-sizing: border-box;
   background-color: #444;
   color: #eee;
+}
+
+.app-header-content {
+  margin: 0;
+  padding: 0;
   text-shadow: 2px 2px 2px black;
+  flex: 1;
 }
 
 .list-map-container {
