@@ -26,18 +26,19 @@
 
 .places-list {
   text-align: left;
-  flex: 1;
   list-style: none;
   margin: 0;
   padding: 0;
   overflow-y: scroll;
   min-width: 200px;
+  transition: 1s all;
+  transform: translateX(-100%);
+  flex: 0;
 }
 
-@media screen and (min-width: 900px) {
-  .places-list {
-    min-width: 300px;
-  }
+.places-list__visible {
+  transform: none;
+  flex: 1;
 }
 
 .places-list li {
@@ -54,4 +55,19 @@
 
 .map-container {
   flex: 3;
+}
+
+.ham_menu {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 700px) {
+  .ham_menu {
+    display: none;
+  }
+
+  .places-list {
+    transform: none;
+    flex: 1;
+  }
 }

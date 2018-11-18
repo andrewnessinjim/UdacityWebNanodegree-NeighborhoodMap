@@ -11,12 +11,12 @@ class ListAndMapContainer extends Component {
   componentWillMount() {
     this.setState({
       places: testData.response.groups
-      .find(item => item.type === "Recommended Places")
-      .items
-      .map(place => ({
-        name: place.venue.name,
-        id: place.venue.id
-      }))
+        .find(item => item.type === "Recommended Places")
+        .items
+        .map(place => ({
+          name: place.venue.name,
+          id: place.venue.id
+        }))
     });
   }
 
@@ -24,7 +24,10 @@ class ListAndMapContainer extends Component {
     console.log(this.state.places);
     return (
       <div className="list-map-container">
-        <SearchableList items={this.state.places.map(place => ({ name: place.name, id: place.id }))}></SearchableList>
+        <SearchableList
+          items={this.state.places.map(place => ({ name: place.name, id: place.id }))}
+          listVisible={this.props.listVisible}
+        />
         <Map />
       </div>
     );
