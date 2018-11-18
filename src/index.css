@@ -1,8 +1,14 @@
-html, body {
+html, body, #root, .App {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -25,4 +31,34 @@ code {
   background-color: #444;
   color: #eee;
   text-shadow: 2px 2px 2px black;
+}
+
+.list-map-container {
+  display: flex;
+  height: 100%;
+}
+
+.places-list {
+  text-align: left;
+  flex: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+}
+
+.places-list li {
+  padding: 10px;
+  box-sizing: border-box;
+  transition: 0.5s all;
+}
+
+.places-list li:hover {
+  cursor: pointer;
+  color: #eee;
+  background-color: #444;
+}
+
+.map-container {
+  flex: 3;
 }
