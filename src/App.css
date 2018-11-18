@@ -31,6 +31,13 @@
   margin: 0;
   padding: 0;
   overflow-y: scroll;
+  min-width: 200px;
+}
+
+@media screen and (min-width: 900px) {
+  .places-list {
+    min-width: 300px;
+  }
 }
 
 .places-list li {
