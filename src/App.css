@@ -32,6 +32,9 @@
   overflow-y: scroll;
   min-width: 200px;
   transition: 1s all;
+}
+
+.places-list__invisible {
   transform: translateX(-100%);
   flex: 0;
 }

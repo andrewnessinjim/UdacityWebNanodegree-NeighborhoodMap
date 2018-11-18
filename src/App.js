@@ -9,10 +9,14 @@ class App extends Component {
   }
 
   onHamClick = () => {
-    this.setState((prevState)=> {
+    this.toggleHam();
+  }
+
+  toggleHam() {
+    this.setState((prevState) => {
       return {
         listVisible: !prevState.listVisible
-      }
+      };
     });
   }
 
