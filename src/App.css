@@ -35,8 +35,7 @@
 }
 
 .places-list__invisible {
-  transform: translateX(-100%);
-  flex: 0;
+  display: none;
 }
 
 .places-list__visible {
