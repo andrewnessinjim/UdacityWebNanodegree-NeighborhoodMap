@@ -50,6 +50,15 @@
   transition: 0.5s all;
 }
 
+.places-list li:after {
+  content: "";
+  height: 1px;
+  width: 100%;
+  display: block;
+  opacity: 0.5;
+  background-image: linear-gradient(to right, #eee, #666, #eee);
+}
+
 .places-list li:hover {
   cursor: pointer;
   color: #eee;
@@ -68,7 +77,6 @@
   .ham_menu {
     display: none;
   }
-
   .places-list {
     transform: none;
     flex: 1;
