@@ -15,7 +15,11 @@ class ListAndMapContainer extends Component {
         .items
         .map(place => ({
           name: place.venue.name,
-          id: place.venue.id
+          id: place.venue.id,
+          location: {
+            lat: place.venue.location.lat,
+            lng: place.venue.location.lng
+          }
         }))
     });
   }
@@ -28,7 +32,7 @@ class ListAndMapContainer extends Component {
           items={this.state.places.map(place => ({ name: place.name, id: place.id }))}
           listVisible={this.props.listVisible}
         />
-        <Map />
+        <Map places={this.state.places}/>
       </div>
     );
   }
