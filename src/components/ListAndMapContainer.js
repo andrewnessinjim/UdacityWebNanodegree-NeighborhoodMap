@@ -5,7 +5,8 @@ import Map from './Map';
 
 class ListAndMapContainer extends Component {
   state = {
-    places: []
+    places: [],
+    filter: ""
   }
 
   componentWillMount() {
@@ -24,15 +25,22 @@ class ListAndMapContainer extends Component {
     });
   }
 
+  handleFilterChange = (event) => {
+    this.setState({filter: event.target.value})
+  }
+
   render() {
-    console.log(this.state.places);
+    const filteredPlaces = this.state.places
+      .filter(place => place.name.match(new RegExp(this.state.filter,"i")));
     return (
       <div className="list-map-container">
         <SearchableList
-          items={this.state.places.map(place => ({ name: place.name, id: place.id }))}
+          items={filteredPlaces}
           listVisible={this.props.listVisible}
+          onFilterChange={this.handleFilterChange}
+          filter={this.state.filter}
         />
-        <Map places={this.state.places}/>
+        <Map places={filteredPlaces}/>
       </div>
     );
   }

@@ -24,23 +24,27 @@
   height: 100%;
 }
 
+.searchable-list-container {
+  min-width: 200px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .places-list {
   text-align: left;
   list-style: none;
   margin: 0;
   padding: 0;
   overflow-y: scroll;
-  min-width: 200px;
-  transition: 1s all;
-  flex: 1;
 }
 
-.places-list__invisible {
+.searchable-list-container__invisible {
   display: none;
 }
 
-.places-list__visible {
-  display: block;
+.searchable-list-container__visible {
+  display: flex;
 }
 
 .places-list li {
@@ -76,8 +80,13 @@
   .ham_menu {
     display: none;
   }
-  .places-list {
-    display: block;
+  .searchable-list-container {
+    display: flex;
     flex: 1;
   }
+}
+
+.input-text-filter {
+  padding: 10px;
+  margin: 15px;
 }
