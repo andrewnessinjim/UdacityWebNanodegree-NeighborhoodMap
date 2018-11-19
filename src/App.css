@@ -32,6 +32,7 @@
   overflow-y: scroll;
   min-width: 200px;
   transition: 1s all;
+  flex: 1;
 }
 
 .places-list__invisible {
@@ -39,8 +40,7 @@
 }
 
 .places-list__visible {
-  transform: none;
-  flex: 1;
+  display: block;
 }
 
 .places-list li {
@@ -77,7 +77,7 @@
     display: none;
   }
   .places-list {
-    transform: none;
+    display: block;
     flex: 1;
   }
 }
