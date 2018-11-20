@@ -10,28 +10,36 @@ class ListAndMapContainer extends Component {
   }
 
   componentWillMount() {
+    const places = testData.response.groups
+      .find(item => item.type === "Recommended Places")
+      .items
+      .map(place => ({
+        name: place.venue.name,
+        id: place.venue.id,
+        location: {
+          lat: place.venue.location.lat,
+          lng: place.venue.location.lng
+        }
+      }));
+
+    let openPlace = {
+      ...places[0],
+      isOpen: true
+    }
+    places[0] = openPlace;
+
     this.setState({
-      places: testData.response.groups
-        .find(item => item.type === "Recommended Places")
-        .items
-        .map(place => ({
-          name: place.venue.name,
-          id: place.venue.id,
-          location: {
-            lat: place.venue.location.lat,
-            lng: place.venue.location.lng
-          }
-        }))
+      places: places
     });
   }
 
   handleFilterChange = (event) => {
-    this.setState({filter: event.target.value})
+    this.setState({ filter: event.target.value })
   }
 
   render() {
     const filteredPlaces = this.state.places
-      .filter(place => place.name.match(new RegExp(this.state.filter,"i")));
+      .filter(place => place.name.match(new RegExp(this.state.filter, "i")));
     return (
       <div className="list-map-container">
         <SearchableList
@@ -40,7 +48,7 @@ class ListAndMapContainer extends Component {
           onFilterChange={this.handleFilterChange}
           filter={this.state.filter}
         />
-        <Map places={filteredPlaces}/>
+        <Map places={filteredPlaces} />
       </div>
     );
   }

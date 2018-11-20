@@ -1,12 +1,19 @@
 import React from 'react';
-import { withScriptjs, GoogleMap, withGoogleMap, Marker } from "react-google-maps"
+import { withScriptjs, GoogleMap, withGoogleMap, Marker, InfoWindow } from "react-google-maps"
+import PlaceInfo from './PlaceInfo';
 
 const MapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={13}
     defaultCenter={{ lat: 51.506729805271924, lng: 0.07301467287201877 }}
   >
-    {props.places.map(place => <Marker key={place.id} position={place.location} /> )}
+    {props.places.map(place =>
+      <Marker key={place.id} position={place.location}>
+        {place.isOpen &&
+          <InfoWindow>
+            <PlaceInfo venueId={place.id} />
+          </InfoWindow>}
+      </Marker>)}
   </GoogleMap>
 ));
 
