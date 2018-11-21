@@ -23,15 +23,7 @@ class ListAndMapContainer extends Component {
         }
       }));
 
-    let openPlace = {
-      ...places[0],
-      isOpen: true
-    }
-    places[0] = openPlace;
-
-    this.setState({
-      places: places
-    });
+    this.setState({places});
   }
 
   handleFilterChange = (event) => {
@@ -55,7 +47,7 @@ class ListAndMapContainer extends Component {
           onListClick={this.onListClick}
           selectedVenueId={this.state.selectedVenue}
         />
-        <Map places={filteredPlaces} />
+        <Map places={filteredPlaces} selectedVenueId={this.state.selectedVenue}/>
       </div>
     );
   }
