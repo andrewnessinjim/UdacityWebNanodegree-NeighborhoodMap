@@ -6,7 +6,8 @@ import Map from './Map';
 class ListAndMapContainer extends Component {
   state = {
     places: [],
-    filter: ""
+    filter: "",
+    selectedVenue: ""
   }
 
   componentWillMount() {
@@ -37,6 +38,10 @@ class ListAndMapContainer extends Component {
     this.setState({ filter: event.target.value })
   }
 
+  onListClick = (event) => {
+    this.setState({ selectedVenue: event.target.getAttribute('venueid') });
+  }
+
   render() {
     const filteredPlaces = this.state.places
       .filter(place => place.name.match(new RegExp(this.state.filter, "i")));
@@ -47,6 +52,8 @@ class ListAndMapContainer extends Component {
           listVisible={this.props.listVisible}
           onFilterChange={this.handleFilterChange}
           filter={this.state.filter}
+          onListClick={this.onListClick}
+          selectedVenueId={this.state.selectedVenue}
         />
         <Map places={filteredPlaces} />
       </div>

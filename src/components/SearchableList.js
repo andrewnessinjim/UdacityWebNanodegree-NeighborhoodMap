@@ -7,11 +7,19 @@ const SearchableList = (props) => (
       type="text"
       placeholder="Filter"
       value={props.filter}
-      onChange={props.onFilterChange}/>
+      onChange={props.onFilterChange} />
     <ul
       className="places-list"
+      onClick={props.onListClick}
     >
-      {props.items.map(place => (<li key={place.id}>{place.name}</li>))}
+      {props.items.map(place => (
+        <li
+          key={place.id}
+          venueid={place.id}
+          className={props.selectedVenueId === place.id ? "selected" : ""}>
+          {place.name}
+        </li>
+      ))}
     </ul>
   </section>
 );

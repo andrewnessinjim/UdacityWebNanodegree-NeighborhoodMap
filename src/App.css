@@ -62,10 +62,14 @@
   background-image: linear-gradient(to right, #eee, #666, #eee);
 }
 
-.places-list li:hover {
+.places-list li:hover, .places-list li.selected {
   cursor: pointer;
   color: #eee;
   background-color: #444;
+}
+
+.places-list li.selected {
+  font-weight: bold;
 }
 
 .map-container {
