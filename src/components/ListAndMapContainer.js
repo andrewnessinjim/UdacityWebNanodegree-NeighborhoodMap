@@ -23,7 +23,7 @@ class ListAndMapContainer extends Component {
         }
       }));
 
-    this.setState({places});
+    this.setState({ places });
   }
 
   handleFilterChange = (event) => {
@@ -32,6 +32,10 @@ class ListAndMapContainer extends Component {
 
   onListClick = (event) => {
     this.setState({ selectedVenue: event.target.getAttribute('venueid') });
+  }
+
+  onCloseClick = () => {
+    this.setState({selectedVenue: ""});
   }
 
   render() {
@@ -47,7 +51,11 @@ class ListAndMapContainer extends Component {
           onListClick={this.onListClick}
           selectedVenueId={this.state.selectedVenue}
         />
-        <Map places={filteredPlaces} selectedVenueId={this.state.selectedVenue}/>
+        <Map
+          places={filteredPlaces}
+          selectedVenueId={this.state.selectedVenue}
+          onCloseClick={this.onCloseClick}
+        />
       </div>
     );
   }
