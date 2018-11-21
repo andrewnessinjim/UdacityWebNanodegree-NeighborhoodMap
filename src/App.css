@@ -90,3 +90,27 @@
   padding: 10px;
   margin: 15px;
 }
+
+.more-details-link {
+  border-radius: 3px;
+  background-color: green;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.place-details h2 {
+  padding: 0;
+  margin: 5px;
+}
+
+.place-details .fourscore-img {
+  max-width: 150px;
+  padding: 5px;
+}
+
+.rating-and-link-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
