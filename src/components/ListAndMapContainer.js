@@ -58,6 +58,10 @@ class ListAndMapContainer extends Component {
     this.setState({ selectedVenue: "" });
   }
 
+  onMarkerClick = (clickedVenue) => {
+    this.setState({selectedVenue: clickedVenue})
+  }
+
   render() {
     const filteredPlaces = this.state.places
       .filter(place => place.name.match(new RegExp(this.state.filter, "i")));
@@ -75,6 +79,7 @@ class ListAndMapContainer extends Component {
           places={filteredPlaces}
           selectedVenueId={this.state.selectedVenue}
           onCloseClick={this.onCloseClick}
+          onMarkerClick={this.onMarkerClick}
         />
       </div>
     );

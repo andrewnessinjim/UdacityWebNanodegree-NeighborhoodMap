@@ -8,7 +8,10 @@ const MapComponent = withScriptjs(withGoogleMap((props) =>
     defaultCenter={{ lat: 51.50, lng: 0.08 }}
   >
     {props.places.map(place =>
-      <Marker key={place.id} position={place.location}>
+      <Marker
+        key={place.id}
+        position={place.location}
+        onClick={props.onMarkerClick.bind(null, place.id)}>
         {(props.selectedVenueId === place.id) &&
           <InfoWindow onCloseClick={props.onCloseClick}>
             <PlaceInfo venueId={place.id} />
@@ -24,6 +27,7 @@ const Map = (props) => {
         selectedVenueId={props.selectedVenueId}
         onCloseClick={props.onCloseClick}
         places={props.places}
+        onMarkerClick={props.onMarkerClick}
         googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2xj7Uf3-5r4zfmDqSmgwwiVEH9QhE0Js"
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ height: `100%` }} />}
