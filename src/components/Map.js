@@ -2,6 +2,7 @@ import React from 'react';
 import { withScriptjs, GoogleMap, withGoogleMap, Marker, InfoWindow } from "react-google-maps"
 import PlaceInfo from './PlaceInfo';
 
+
 const MapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={13}
@@ -11,7 +12,8 @@ const MapComponent = withScriptjs(withGoogleMap((props) =>
       <Marker
         key={place.id}
         position={place.location}
-        onClick={props.onMarkerClick.bind(null, place.id)}>
+        onClick={props.onMarkerClick.bind(null, place.id)}
+        animation={props.selectedVenueId === place.id ? window.google.maps.Animation.BOUNCE : null}>
         {(props.selectedVenueId === place.id) &&
           <InfoWindow onCloseClick={props.onCloseClick}>
             <PlaceInfo venueId={place.id} />
