@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchableList from './SearchableList';
 import testData from '../test_data/sights_in_london';
 import Map from './Map';
+import config from '../config';
 
 class ListAndMapContainer extends Component {
   state = {
@@ -10,8 +11,8 @@ class ListAndMapContainer extends Component {
     selectedVenue: ""
   }
 
-  componentWillMount() {
-    const places = testData.response.groups
+  extractRequiredDetails(jsonResponse) {
+    const places = jsonResponse.response.groups
       .find(item => item.type === "Recommended Places")
       .items
       .map(place => ({
@@ -26,6 +27,25 @@ class ListAndMapContainer extends Component {
     this.setState({ places });
   }
 
+  componentWillMount() {
+
+    if (config.stubbed) {
+      this.extractRequiredDetails(testData);
+
+    } else {
+      fetch('https://api.foursquare.com/v2/venues/explore?client_id=YHR2IVO0ARLPWGNCAJJXHREDICGKN4RU1QRPUQZGP52FXQVQ&client_secret=P0KAN4DDE4XLWLI3RBUT02YLZAR4REDDGGEZLAQBRUBUX3A1&v=20180323&limit=10&ll=51.50,0.08&section=sights')
+        .then(response => {
+          response.json().then(data => {
+            this.extractRequiredDetails(data)
+          })
+        })
+        .catch(function () {
+          // Code for handling errors
+        });
+    }
+
+  }
+
   handleFilterChange = (event) => {
     this.setState({ filter: event.target.value })
   }
@@ -35,7 +55,7 @@ class ListAndMapContainer extends Component {
   }
 
   onCloseClick = () => {
-    this.setState({selectedVenue: ""});
+    this.setState({ selectedVenue: "" });
   }
 
   render() {

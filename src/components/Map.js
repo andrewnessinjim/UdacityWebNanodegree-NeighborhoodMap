@@ -5,7 +5,7 @@ import PlaceInfo from './PlaceInfo';
 const MapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={13}
-    defaultCenter={{ lat: 51.506729805271924, lng: 0.07301467287201877 }}
+    defaultCenter={{ lat: 51.50, lng: 0.08 }}
   >
     {props.places.map(place =>
       <Marker key={place.id} position={place.location}>

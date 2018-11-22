@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import venueTestData from '../test_data/venue_detail';
 import fourscoreIcon from '../icons/foursquare.png';
+import config from '../config';
 
 class PlaceInfo extends Component {
   state = {
     placeInfo: {}
   }
 
-  componentDidMount() {
-    const { name, rating, canonicalUrl, bestPhoto } = venueTestData.response.venue;
+  extractRequiredDetails(jsonResponse) {
+    const { name, rating, canonicalUrl, bestPhoto } = jsonResponse.response.venue;
     const placeInfo = {
       name: name,
       rating: rating,
@@ -18,17 +19,30 @@ class PlaceInfo extends Component {
     this.setState({ placeInfo });
   }
 
+  componentDidMount() {
+    if (config.stubbed) {
+      this.extractRequiredDetails(venueTestData);
+    } else {
+      fetch(`https://api.foursquare.com/v2/venues/${this.props.venueId}?client_id=YHR2IVO0ARLPWGNCAJJXHREDICGKN4RU1QRPUQZGP52FXQVQ&client_secret=P0KAN4DDE4XLWLI3RBUT02YLZAR4REDDGGEZLAQBRUBUX3A1&v=20180323`)
+        .then(jsonResponse => {
+          jsonResponse.json().then(data => {
+            this.extractRequiredDetails(data);
+          });
+        });
+    }
+  }
+
   render() {
     const { name, rating, canonicalUrl, bestPhotoUrl } = this.state.placeInfo;
     return (
       <section className="place-details">
         <h2>{name}</h2>
-        <img src={bestPhotoUrl}></img>
+        <img src={bestPhotoUrl} alt={name}></img>
         <div className="rating-and-link-container">
           <p><strong>Rating:</strong> {rating}</p>
           <a className="more-details-link" href={canonicalUrl} target="_blank" rel="noopener noreferrer">More Info</a>
         </div>
-        <img className="fourscore-img" src={fourscoreIcon} alt="Powered By Fourscore"/>
+        <img className="fourscore-img" src={fourscoreIcon} alt="Powered By Fourscore" />
       </section>
     )
   }
