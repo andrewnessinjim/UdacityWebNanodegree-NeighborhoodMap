@@ -11,7 +11,7 @@
   "scripts": {
     "start": "node buildConfig/copy.js prod && react-scripts start",
     "start-stubbed": "node buildConfig/copy.js dev && react-scripts start",
-    "build": "react-scripts build",
+    "build": "node buildConfig/copy.js prod && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
