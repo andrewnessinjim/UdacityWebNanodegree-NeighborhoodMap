@@ -24,10 +24,16 @@ class PlaceInfo extends Component {
       this.extractRequiredDetails(venueTestData);
     } else {
       fetch(`https://api.foursquare.com/v2/venues/${this.props.venueId}?client_id=YHR2IVO0ARLPWGNCAJJXHREDICGKN4RU1QRPUQZGP52FXQVQ&client_secret=P0KAN4DDE4XLWLI3RBUT02YLZAR4REDDGGEZLAQBRUBUX3A1&v=20180323`)
-        .then(jsonResponse => {
-          jsonResponse.json().then(data => {
-            this.extractRequiredDetails(data);
-          });
+        .then(response => {
+          if (response.ok) {
+            response.json().then(data => {
+              this.extractRequiredDetails(data);
+            });
+          } else {
+            this.props.onError("Unable to contact servers! Please check your internet connection and retry");
+          }
+        }).catch(() => {
+          this.props.onError("Unable to contact servers! Please check your internet connection and retry");
         });
     }
   }

@@ -35,19 +35,26 @@ class ListAndMapContainer extends Component {
     } else {
       fetch('https://api.foursquare.com/v2/venues/explore?client_id=YHR2IVO0ARLPWGNCAJJXHREDICGKN4RU1QRPUQZGP52FXQVQ&client_secret=P0KAN4DDE4XLWLI3RBUT02YLZAR4REDDGGEZLAQBRUBUX3A1&v=20180323&limit=10&ll=51.50,0.08&section=sights')
         .then(response => {
-          response.json().then(data => {
-            this.extractRequiredDetails(data)
-          })
+          if (response.ok) {
+            response.json().then(data => {
+              this.extractRequiredDetails(data)
+            })
+          } else {
+            this.props.onError("Unable to contact servers! Please check your internet connection and retry");
+          }
         })
-        .catch(function () {
-          // Code for handling errors
+        .catch(() => {
+          this.props.onError("Unable to contact servers! Please check your internet connection and retry");
         });
     }
 
   }
 
   handleFilterChange = (event) => {
-    this.setState({ filter: event.target.value })
+    this.setState({
+      filter: event.target.value,
+      selectedVenue: ""
+    })
   }
 
   onListClick = (event) => {
@@ -59,7 +66,7 @@ class ListAndMapContainer extends Component {
   }
 
   onMarkerClick = (clickedVenue) => {
-    this.setState({selectedVenue: clickedVenue})
+    this.setState({ selectedVenue: clickedVenue })
   }
 
   render() {
@@ -80,6 +87,7 @@ class ListAndMapContainer extends Component {
           selectedVenueId={this.state.selectedVenue}
           onCloseClick={this.onCloseClick}
           onMarkerClick={this.onMarkerClick}
+          onError={this.props.onError}
         />
       </div>
     );
