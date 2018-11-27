@@ -47,7 +47,10 @@ class ListAndMapContainer extends Component {
   }
 
   handleFilterChange = (event) => {
-    this.setState({ filter: event.target.value })
+    this.setState({
+      filter: event.target.value,
+      selectedVenue: ""
+    })
   }
 
   onListClick = (event) => {
@@ -59,7 +62,7 @@ class ListAndMapContainer extends Component {
   }
 
   onMarkerClick = (clickedVenue) => {
-    this.setState({selectedVenue: clickedVenue})
+    this.setState({ selectedVenue: clickedVenue })
   }
 
   render() {
