@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
 import ListAndMapContainer from './components/ListAndMapContainer';
+import ErrorPanel from './components/ErrorPanel';
 
 class App extends Component {
   state = {
-    listVisible: true
+    listVisible: true,
+    errorMessage: ""
   }
 
   onHamClick = () => {
@@ -20,12 +22,17 @@ class App extends Component {
     });
   }
 
+  onError = (errorMessage) =>  {
+    this.setState({ errorMessage })
+  }
+
   render() {
-    const {listVisible} = this.state;
+    const { listVisible } = this.state;
     return (
       <div className="App">
-        <Header onHamClick={this.onHamClick} listVisible={listVisible}/>
-        <ListAndMapContainer listVisible={listVisible}/>
+        <Header onHamClick={this.onHamClick} listVisible={listVisible} />
+        <ListAndMapContainer listVisible={listVisible} onError={this.onError} />
+        {(this.state.errorMessage && <ErrorPanel message={this.state.errorMessage} />)}
       </div>
     );
   }

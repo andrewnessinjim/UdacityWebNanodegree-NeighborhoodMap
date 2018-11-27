@@ -16,7 +16,7 @@ const MapComponent = withScriptjs(withGoogleMap((props) =>
         animation={props.selectedVenueId === place.id ? window.google.maps.Animation.BOUNCE : null}>
         {(props.selectedVenueId === place.id) &&
           <InfoWindow onCloseClick={props.onCloseClick}>
-            <PlaceInfo venueId={place.id} />
+            <PlaceInfo venueId={place.id} onError={props.onError} />
           </InfoWindow>}
       </Marker>)}
   </GoogleMap>
@@ -34,6 +34,7 @@ const Map = (props) => {
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ height: `100%` }} />}
         mapElement={<div style={{ height: `100%` }} />}
+        onError={props.onError}
       />
     </div>
   );
