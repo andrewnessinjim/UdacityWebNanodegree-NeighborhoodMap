@@ -70,6 +70,7 @@
 
 .places-list li.selected {
   font-weight: bold;
+  text-decoration: underline;
 }
 
 .map-container {
@@ -91,8 +92,8 @@
 }
 
 .input-text-filter {
-  padding: 10px;
-  margin: 15px;
+  padding: 5px;
+  margin: 10px;
 }
 
 .more-details-link {
@@ -117,4 +118,10 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+#select_place_label {
+  text-align: left;
+  padding: 5px;
+  color: green;
 }
