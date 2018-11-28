@@ -3,21 +3,24 @@ import React from 'react';
 const SearchableList = (props) => {
 
   function onKeyDown(event) {
-    event.preventDefault();
     const currentVenueIndex = props.items.findIndex(place => place.id === props.selectedVenueId)
     if (event.key === 'ArrowDown') {
+      event.preventDefault();
       if (currentVenueIndex < props.items.length - 2) {
         props.setSelectedVenue(props.items[currentVenueIndex + 1].id);
       }
     } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
       if (currentVenueIndex >= 1) {
         props.setSelectedVenue(props.items[currentVenueIndex - 1].id);
       }
     } else if (event.key === 'Home') {
+      event.preventDefault();
       if (props.items[0]) {
         props.setSelectedVenue(props.items[0].id);
       }
     } else if (event.key === 'End') {
+      event.preventDefault();
       if (props.items[props.items.length-1]) {
         props.setSelectedVenue(props.items[props.items.length-1].id);
       }
