@@ -4,6 +4,7 @@ import testData from '../test_data/sights_in_london';
 import Map from './Map';
 import config from '../config';
 
+const interestedKeys = ["ArrowDown", "ArrowUp", "Home", "End"];
 class ListAndMapContainer extends Component {
   state = {
     places: [],
@@ -62,7 +63,7 @@ class ListAndMapContainer extends Component {
   }
 
   setSelectedVenue = (selectedVenue) => {
-    this.setState({selectedVenue});
+    this.setState({ selectedVenue });
   }
 
   onCloseClick = () => {
@@ -71,6 +72,35 @@ class ListAndMapContainer extends Component {
 
   onMarkerClick = (clickedVenue) => {
     this.setState({ selectedVenue: clickedVenue })
+  }
+
+  onListFocus = () => {
+    if (this.state.places[0]) {
+      this.setState({ selectedVenue: this.state.places[0].id });
+    }
+  }
+
+  onKeyDown = ({ key }) => {
+    const { places, selectedVenue } = this.state;
+
+    const currentVenueIndex = places.findIndex(place => place.id === selectedVenue);
+    if (key === 'ArrowDown') {
+      if (currentVenueIndex < places.length - 2) {
+        this.setState({ selectedVenue: places[currentVenueIndex + 1].id });
+      }
+    } else if (key === 'ArrowUp') {
+      if (currentVenueIndex >= 1) {
+        this.setState({ selectedVenue: places[currentVenueIndex - 1].id });
+      }
+    } else if (key === 'Home') {
+      if (places[0]) {
+        this.setState({ selectedVenue: places[0].id });
+      }
+    } else if (key === 'End') {
+      if (places[places.length - 1]) {
+        this.setState({selectedVenue: places[places.length - 1].id});
+      }
+    }
   }
 
   render() {
@@ -86,6 +116,9 @@ class ListAndMapContainer extends Component {
           onListClick={this.onListClick}
           selectedVenueId={this.state.selectedVenue}
           setSelectedVenue={this.setSelectedVenue}
+          onFocus={this.onListFocus}
+          interestedKeys={interestedKeys}
+          onKeyDown={this.onKeyDown}
         />
         <Map
           places={filteredPlaces}
