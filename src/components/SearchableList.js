@@ -3,7 +3,7 @@ import React from 'react';
 const SearchableList = (props) => {
 
   function onKeyDown(event) {
-    if(props.interestedKeys && props.interestedKeys.includes(event.key)) {
+    if (props.interestedKeys && props.interestedKeys.includes(event.key)) {
       event.preventDefault();
       props.onKeyDown(event);
     }
@@ -12,7 +12,9 @@ const SearchableList = (props) => {
   return (
     <section className={`searchable-list-container${props.listVisible ? " searchable-list-container__visible" : " searchable-list-container__invisible"}`}>
       <span id="select_place_label">Select a place:</span>
+      <label htmlFor="input-text-filter" id="input-text-filter-label">Filter Places</label>
       <input
+        id="input-text-filter"
         className="input-text-filter"
         type="text"
         placeholder="Filter"
@@ -30,16 +32,17 @@ const SearchableList = (props) => {
         {props.items.map(place => {
           const isVenueSelected = props.selectedVenueId === place.id;
           return (
-          <li
-            key={place.id}
-            venueid={place.id}
-            id={place.id}
-            className={isVenueSelected ? "selected" : ""}
-            role="option"
-            aria-selected={isVenueSelected ? "true" : "false"}>
-            {place.name}
-          </li>
-        )})}
+            <li
+              key={place.id}
+              venueid={place.id}
+              id={place.id}
+              className={isVenueSelected ? "selected" : ""}
+              role="option"
+              aria-selected={isVenueSelected ? "true" : "false"}>
+              {place.name}
+            </li>
+          )
+        })}
       </ul>
     </section>
   )

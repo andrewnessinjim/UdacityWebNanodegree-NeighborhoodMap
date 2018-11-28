@@ -143,3 +143,8 @@
 .error-panel p {
   color: lightgray;
 }
+
+#input-text-filter-label {
+  margin-left: -10000px;
+  position: absolute;
+}
