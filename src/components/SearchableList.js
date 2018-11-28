@@ -27,17 +27,19 @@ const SearchableList = (props) => {
         onKeyDown={onKeyDown}
         aria-activedescendant={props.selectedVenueId ? props.selectedVenueId : null}
         onFocus={props.onFocus}>
-        {props.items.map(place => (
+        {props.items.map(place => {
+          const isVenueSelected = props.selectedVenueId === place.id;
+          return (
           <li
             key={place.id}
             venueid={place.id}
             id={place.id}
-            className={props.selectedVenueId === place.id ? "selected" : ""}
+            className={isVenueSelected ? "selected" : ""}
             role="option"
-            aria-selected={props.selectedVenueId === place.id ? "true" : "false"}>
+            aria-selected={isVenueSelected ? "true" : "false"}>
             {place.name}
           </li>
-        ))}
+        )})}
       </ul>
     </section>
   )
