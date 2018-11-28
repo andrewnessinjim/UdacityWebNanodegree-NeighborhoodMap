@@ -107,7 +107,7 @@ class ListAndMapContainer extends Component {
     const filteredPlaces = this.state.places
       .filter(place => place.name.match(new RegExp(this.state.filter, "i")));
     return (
-      <div className="list-map-container">
+      <main className="list-map-container">
         <SearchableList
           items={filteredPlaces}
           listVisible={this.props.listVisible}
@@ -127,7 +127,7 @@ class ListAndMapContainer extends Component {
           onMarkerClick={this.onMarkerClick}
           onError={this.props.onError}
         />
-      </div>
+      </main>
     );
   }
 }
