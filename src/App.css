@@ -124,6 +124,9 @@
   text-align: left;
   padding: 5px;
   color: green;
+  margin: 0;
+  padding: 3px 10px;
+  font-size: 0.9em;
 }
 
 .error-panel {
