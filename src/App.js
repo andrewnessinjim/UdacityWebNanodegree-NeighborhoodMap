@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './styles/App.css';
 import Header from './components/Header';
 import ListAndMapContainer from './components/ListAndMapContainer';
 import ErrorPanel from './components/ErrorPanel';
