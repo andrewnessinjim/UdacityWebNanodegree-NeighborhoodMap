@@ -41,8 +41,8 @@ class PlaceInfo extends Component {
   render() {
     const { name, rating, canonicalUrl, bestPhotoUrl } = this.state.placeInfo;
     return (
-      <section className="place-details">
-        <h2>{name}</h2>
+      <section className="place-details" role="dialog" aria-labelledby="place_info_heading">
+        <h2 id="place_info_heading">{name}</h2>
         <img src={bestPhotoUrl} alt={name}></img>
         <div className="rating-and-link-container">
           <p><strong>Rating:</strong> {rating}</p>
