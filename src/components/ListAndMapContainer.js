@@ -50,7 +50,7 @@ class ListAndMapContainer extends Component {
 
   }
 
-  handleFilterChange = (event) => {
+  onFilterChange = (event) => {
     this.setState({
       filter: event.target.value,
       selectedVenue: ""
@@ -81,7 +81,7 @@ class ListAndMapContainer extends Component {
         <SearchableList
           items={filteredPlaces}
           listVisible={this.props.listVisible}
-          onFilterChange={this.handleFilterChange}
+          onFilterChange={this.onFilterChange}
           filter={this.state.filter}
           onListClick={this.onListClick}
           selectedVenueId={this.state.selectedVenue}
