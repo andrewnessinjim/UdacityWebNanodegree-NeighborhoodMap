@@ -11,7 +11,8 @@ const SearchableList = (props) => {
         type="text"
         placeholder="Filter"
         value={props.filter}
-        onChange={props.onFilterChange} />
+        onChange={props.onFilterChange}
+        autoFocus />
       <ul
         className="places-list"
         onClick={props.onListClick}
