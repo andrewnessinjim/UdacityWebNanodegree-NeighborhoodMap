@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ErrorPanel = (props) => (
-    <div className="error-panel">
+    <div className="error-panel" role="alert">
         <p>{props.message}</p>
     </div>
 )
