@@ -3,7 +3,8 @@ import SearchableList from './SearchableList';
 import testData from '../test_data/sights_in_london';
 import Map from './Map';
 import config from '../generated/config';
-import {ERROR_MESSAGES} from './ErrorPanel';
+import { ERROR_MESSAGES } from './ErrorPanel';
+import ErrorBoundary from './ErrorBoundary';
 
 class ListAndMapContainer extends Component {
   state = {
@@ -83,13 +84,15 @@ class ListAndMapContainer extends Component {
           onListClick={this.onListClick}
           selectedVenueId={this.state.selectedVenue}
         />
-        <Map
-          places={filteredPlaces}
-          selectedVenueId={this.state.selectedVenue}
-          onCloseClick={this.onCloseClick}
-          onMarkerClick={this.onMarkerClick}
-          onError={this.props.onError}
-        />
+        <ErrorBoundary>
+          <Map
+            places={filteredPlaces}
+            selectedVenueId={this.state.selectedVenue}
+            onCloseClick={this.onCloseClick}
+            onMarkerClick={this.onMarkerClick}
+            onError={this.props.onError}
+          />
+        </ErrorBoundary>
       </main>
     );
   }
