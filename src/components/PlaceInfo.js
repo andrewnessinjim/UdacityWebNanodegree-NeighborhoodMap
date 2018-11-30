@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import venueTestData from '../test_data/venue_detail';
 import fourscoreIcon from '../icons/foursquare.png';
 import config from '../config';
+import {ERROR_MESSAGES} from './ErrorPanel';
 
 class PlaceInfo extends Component {
   state = {
@@ -30,10 +31,10 @@ class PlaceInfo extends Component {
               this.extractRequiredDetails(data);
             });
           } else {
-            this.props.onError("Unable to contact servers! Please check your internet connection and retry");
+            this.props.onError(ERROR_MESSAGES.NETWORK_ERROR_MESSAGE);
           }
         }).catch(() => {
-          this.props.onError("Unable to contact servers! Please check your internet connection and retry");
+          this.props.onError(ERROR_MESSAGES.NETWORK_ERROR_MESSAGE);
         });
     }
   }

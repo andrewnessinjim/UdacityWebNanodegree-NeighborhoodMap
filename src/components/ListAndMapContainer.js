@@ -3,6 +3,7 @@ import SearchableList from './SearchableList';
 import testData from '../test_data/sights_in_london';
 import Map from './Map';
 import config from '../config';
+import {ERROR_MESSAGES} from './ErrorPanel';
 
 class ListAndMapContainer extends Component {
   state = {
@@ -40,11 +41,11 @@ class ListAndMapContainer extends Component {
               this.extractRequiredDetails(data)
             })
           } else {
-            this.props.onError("Unable to contact servers! Please check your internet connection and retry");
+            this.props.onError(ERROR_MESSAGES.NETWORK_ERROR_MESSAGE);
           }
         })
         .catch(() => {
-          this.props.onError("Unable to contact servers! Please check your internet connection and retry");
+          this.props.onError(ERROR_MESSAGES.NETWORK_ERROR_MESSAGE);
         });
     }
 
