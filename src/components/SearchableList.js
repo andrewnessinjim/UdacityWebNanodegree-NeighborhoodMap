@@ -14,7 +14,9 @@ const SearchableList = (props) => {
         onChange={props.onFilterChange} />
       <ul
         className="places-list"
-        onClick={props.onListClick}>
+        onClick={props.onListClick}
+        role="region"
+        aria-live="polite">
         {props.items.map(place => {
           const isVenueSelected = props.selectedVenueId === place.id;
           return (
