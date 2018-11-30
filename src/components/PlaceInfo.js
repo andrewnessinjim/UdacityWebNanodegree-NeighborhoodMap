@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import venueTestData from '../test_data/venue_detail';
 import fourscoreIcon from '../icons/foursquare.png';
-import config from '../config';
+import config from '../generated/config';
 import {ERROR_MESSAGES} from './ErrorPanel';
 
 class PlaceInfo extends Component {

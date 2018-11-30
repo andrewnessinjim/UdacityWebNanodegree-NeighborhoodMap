@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchableList from './SearchableList';
 import testData from '../test_data/sights_in_london';
 import Map from './Map';
-import config from '../config';
+import config from '../generated/config';
 import {ERROR_MESSAGES} from './ErrorPanel';
 
 class ListAndMapContainer extends Component {
