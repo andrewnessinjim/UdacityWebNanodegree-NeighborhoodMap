@@ -151,3 +151,8 @@
   margin-left: -10000px;
   position: absolute;
 }
+
+.places-list button {
+  padding: 10px;
+  width: 100%;
+}

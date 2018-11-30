@@ -23,7 +23,7 @@ const SearchableList = (props) => {
               venueid={place.id}
               id={place.id}
               className={isVenueSelected ? "selected" : ""}>
-              {place.name}
+              <button>{place.name}</button>
             </li>
           )
         })}
