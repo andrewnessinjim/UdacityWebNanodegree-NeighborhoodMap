@@ -62,10 +62,6 @@ class ListAndMapContainer extends Component {
     this.setState({ selectedVenue: event.target.getAttribute('venueid') });
   }
 
-  setSelectedVenue = (selectedVenue) => {
-    this.setState({ selectedVenue });
-  }
-
   onCloseClick = () => {
     this.setState({ selectedVenue: "" });
   }
@@ -86,7 +82,6 @@ class ListAndMapContainer extends Component {
           filter={this.state.filter}
           onListClick={this.onListClick}
           selectedVenueId={this.state.selectedVenue}
-          setSelectedVenue={this.setSelectedVenue}
         />
         <Map
           places={filteredPlaces}
