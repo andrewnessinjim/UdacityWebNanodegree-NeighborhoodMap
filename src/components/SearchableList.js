@@ -20,10 +20,8 @@ const SearchableList = (props) => {
           return (
             <li
               key={place.id}
-              venueid={place.id}
-              id={place.id}
               className={isVenueSelected ? "selected" : ""}>
-              {place.name}
+              <button venueid={place.id}>{place.name}</button>
             </li>
           )
         })}

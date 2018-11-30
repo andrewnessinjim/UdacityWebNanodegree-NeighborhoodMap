@@ -47,10 +47,19 @@
   display: flex;
 }
 
-.places-list li {
+.places-list button {
   padding: 10px;
-  box-sizing: border-box;
+  width: 100%;
+  background: unset;
+  border: unset;
+  text-align: left;
   transition: 0.5s all;
+}
+
+.places-list button:hover, .places-list li.selected button {
+  cursor: pointer;
+  color: #eee;
+  background-color: #444;
 }
 
 .places-list li:after {
@@ -62,13 +71,7 @@
   background-image: linear-gradient(to right, #eee, #666, #eee);
 }
 
-.places-list li:hover, .places-list li.selected {
-  cursor: pointer;
-  color: #eee;
-  background-color: #444;
-}
-
-.places-list li.selected {
+.places-list li.selected button{
   font-weight: bold;
   text-decoration: underline;
 }
