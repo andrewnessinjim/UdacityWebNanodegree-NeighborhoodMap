@@ -32,6 +32,7 @@ class ListAndMapContainer extends Component {
   componentWillMount() {
 
     if (config.stubbed) {
+      //If running in stubbed mode, use hardcoded test data
       this.extractRequiredDetails(testData);
 
     } else {
@@ -41,7 +42,7 @@ class ListAndMapContainer extends Component {
             response.json().then(data => {
               this.extractRequiredDetails(data)
             })
-          } else {
+          } else { //Means there was an error when making the request
             this.props.onError(ERROR_MESSAGES.NETWORK_ERROR_MESSAGE);
           }
         })
@@ -60,20 +61,25 @@ class ListAndMapContainer extends Component {
   }
 
   onListClick = (event) => {
+    //update selectedVenue state with the target's venueid. Target's venueid is when rendering it
     this.setState({ selectedVenue: event.target.getAttribute('venueid') });
   }
 
   onCloseClick = () => {
+    //Clear selectedVenue when the InfoWindow is closed
     this.setState({ selectedVenue: "" });
   }
 
   onMarkerClick = (clickedVenue) => {
+    //venue id is set on the marker as an attribute. Same id is returned when a marker is clicked.
     this.setState({ selectedVenue: clickedVenue })
   }
 
   render() {
+    //Render places only after filtering based on the filter query
     const filteredPlaces = this.state.places
       .filter(place => place.name.match(new RegExp(this.state.filter, "i")));
+
     return (
       <main className="list-map-container">
         <SearchableList

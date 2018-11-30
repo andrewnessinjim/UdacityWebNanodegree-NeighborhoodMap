@@ -15,7 +15,7 @@ class PlaceInfo extends Component {
       name: name,
       rating: rating,
       canonicalUrl: canonicalUrl,
-      bestPhotoUrl: `${bestPhoto.prefix}150x100${bestPhoto.suffix}`
+      bestPhotoUrl: `${bestPhoto.prefix}150x100${bestPhoto.suffix}` //URL formed as mentioned in Foursquare docs
     }
     this.setState({ placeInfo });
   }
@@ -30,7 +30,7 @@ class PlaceInfo extends Component {
             response.json().then(data => {
               this.extractRequiredDetails(data);
             });
-          } else {
+          } else { //Means error when making the request
             this.props.onError(ERROR_MESSAGES.NETWORK_ERROR_MESSAGE);
           }
         }).catch(() => {

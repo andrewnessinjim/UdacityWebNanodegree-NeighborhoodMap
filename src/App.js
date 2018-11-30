@@ -6,8 +6,8 @@ import ErrorPanel from './components/ErrorPanel';
 
 class App extends Component {
   state = {
-    listVisible: true,
-    errorMessage: ""
+    listVisible: true, //Track if list is visible/hidden
+    errorMessage: "" //Track errors
   }
 
   onHamClick = () => {
@@ -17,7 +17,7 @@ class App extends Component {
   toggleHam() {
     this.setState((prevState) => {
       return {
-        listVisible: !prevState.listVisible
+        listVisible: !prevState.listVisible //Invert the state
       };
     });
   }
@@ -32,6 +32,8 @@ class App extends Component {
       <div className="App">
         <Header onHamClick={this.onHamClick} listVisible={listVisible} />
         <ListAndMapContainer listVisible={listVisible} onError={this.onError} />
+
+        {/*Show error panel if errorMessage is set by any children*/}
         {(this.state.errorMessage && <ErrorPanel message={this.state.errorMessage} />)}
       </div>
     );
