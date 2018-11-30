@@ -9,8 +9,8 @@
     "react-scripts": "2.1.1"
   },
   "scripts": {
-    "start": "node buildConfig/copy.js prod && react-scripts start",
-    "start-stubbed": "node buildConfig/copy.js dev && react-scripts start",
+    "start": "node buildConfig/copy.js dev && react-scripts start",
+    "start-api": "node buildConfig/copy.js prod && react-scripts start",
     "build": "node buildConfig/copy.js prod && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
